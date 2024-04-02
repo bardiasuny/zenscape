@@ -1,0 +1,259 @@
+{
+    "root":true,
+    "extends":[
+      "airbnb",
+      "airbnb/hooks",
+      "airbnb-typescript"
+    ],
+    "parser":"@typescript-eslint/parser",
+    "plugins":[
+        "react-native",
+        "filenames"
+    ],
+    "parserOptions":{
+      "ecmaVersion":2018,
+      "sourceType":"module",
+      "ecmaFeatures":{
+        "jsx":true
+      },
+      "project": "./tsconfig.json"
+    },
+    "env":{
+      "node":true,
+      "browser":true,
+      "es6":true,
+      "es2020":true,
+      "react-native/react-native":true
+    },
+    "overrides":[
+      {
+        "files": ["**/*.ts", "**/*.tsx"],
+        "plugins": [
+          "@typescript-eslint"
+        ],
+        "extends": ["plugin:@typescript-eslint/recommended"],
+        "parser": "@typescript-eslint/parser",
+        "parserOptions": {
+          "project": "./tsconfig.json",
+          "ecmaVersion":2018,
+          "sourceType":"module",
+          "ecmaFeatures":{
+            "jsx":true
+          }
+        },
+        "rules": {
+          "no-console":"off",
+          "react/jsx-indent":[
+            "error",
+            4
+          ],
+          "react/jsx-indent-props":[
+            "error",
+            4
+          ],
+          "indent":"off",
+          "@typescript-eslint/indent":[
+            "error",
+            4
+          ],
+          "react/jsx-filename-extension":[
+            1,
+            {
+              "extensions":[
+                ".js",
+                ".jsx",
+                ".ts",
+                ".tsx"
+              ]
+            }
+          ],
+          "no-unsafe-optional-chaining":0,
+          "jsx-a11y/click-events-have-key-events":"off",
+          "jsx-a11y/no-static-element-interactions":"off",
+          "react-hooks/exhaustive-deps":"off",
+          "react/function-component-definition":[
+            2,
+            {
+              "namedComponents":"arrow-function"
+            }
+          ],
+          "react/jsx-props-no-spreading":[
+            2,
+            {
+              "exceptions":[]
+            }
+          ],
+          "react/prop-types":[
+            "off"
+          ],
+          "react/require-default-props":"off",
+          "react/forbid-prop-types":[
+            "error",
+            {
+              "ignore":[
+                "navigation",
+                "restProps",
+                "touchProps",
+                "textProps"
+              ]
+            }
+          ],
+          "react-native/split-platform-components":2,
+          "react-native/no-inline-styles":2,
+          "react-native/no-color-literals":2,
+          "react-native/no-single-element-style-arrays":2,
+          "filenames/match-exported":2,
+          "import/extensions":[
+            "error",
+            "ignorePackages",
+            {
+              "js":"never",
+              "jsx":"never",
+              "ts":"never",
+              "tsx":"never"
+            }
+          ],
+          "comma-dangle":"off",
+          "@typescript-eslint/comma-dangle":[
+            "off"
+          ],
+          "default-case": "off",
+          "no-dupe-class-members": "off",
+          "no-undef": "off",
+          "@typescript-eslint/consistent-type-assertions": "warn",
+          "no-array-constructor": "off",
+          "@typescript-eslint/no-array-constructor": "warn",
+          "no-redeclare": "off",
+          "@typescript-eslint/no-redeclare": "warn",
+          "no-use-before-define": "off",
+          "@typescript-eslint/no-use-before-define": "off",
+          "no-unused-expressions": "off",
+          "@typescript-eslint/no-unused-expressions": [
+            "error",
+            {
+              "allowShortCircuit": true,
+              "allowTernary": true,
+              "allowTaggedTemplates": true
+            }
+          ],
+          "no-unused-vars": "off",
+          "@typescript-eslint/no-unused-vars": [
+            "warn",
+            {
+              "args": "none",
+              "ignoreRestSiblings": true
+            }
+          ],
+          "no-useless-constructor": "off",
+          "@typescript-eslint/no-useless-constructor": "warn",
+          "no-loop-func": "off",
+          "@typescript-eslint/no-loop-func": ["error"],
+          "no-shadow": "off",
+          "@typescript-eslint/no-shadow": ["error"],
+          "object-curly-spacing": "off",
+          "@typescript-eslint/object-curly-spacing": ["error"],
+          "space-infix-ops": "off",
+          "@typescript-eslint/space-infix-ops": ["error", { "int32Hint": false }],
+          "@typescript-eslint/no-unsafe-return": ["warn"],
+          "@typescript-eslint/no-unsafe-call": ["off"],
+          "@typescript-eslint/ban-ts-comment": ["warn"],
+          "@typescript-eslint/no-floating-promises": ["warn"]
+        }
+      }
+    ],
+    "settings": {
+      "import/extensions": [".js", ".mjs", ".jsx", ".ts", ".tsx"],
+      "import/resolver": {
+        "node": {
+          "extensions": [
+            ".js",
+            ".jsx",
+            ".ts",
+            ".tsx"
+          ]
+        }
+      },
+      "import/parsers": {
+        "@typescript-eslint/parser": [".ts",".tsx"]
+      }
+    },
+    "rules":{
+      "no-console":"off",
+      "indent":[
+        "error",
+        4
+      ],
+      "@typescript-eslint/indent":[
+        "error",
+        4
+      ],
+      "react/jsx-indent":[
+        "error",
+        4
+      ],
+      "react/jsx-indent-props":[
+        "error",
+        4
+      ],
+      "react/jsx-filename-extension":[
+        1,
+        {
+          "extensions":[
+            ".js",
+            ".jsx",
+            ".tsx",
+            ".ts"
+          ]
+        }
+      ],
+      "jsx-a11y/click-events-have-key-events":"off",
+      "jsx-a11y/no-static-element-interactions":"off",
+      "react-hooks/exhaustive-deps":"off",
+      "react/jsx-props-no-spreading":[
+        2,
+        {
+          "exceptions":[]
+        }
+      ],
+      "react/prop-types":[
+        "error",
+        {
+          "ignore":[
+            "navigation",
+            "route",
+            "restProps",
+            "touchProps",
+            "textProps"
+          ]
+        }
+      ],
+      "react/forbid-prop-types":[
+        "error",
+        {
+          "ignore":[
+            "navigation",
+            "restProps",
+            "touchProps",
+            "textProps"
+          ]
+        }
+      ],
+      "react-native/no-unused-styles":0,
+      "react-native/split-platform-components":2,
+      "react-native/no-inline-styles":2,
+      "react-native/no-color-literals":2,
+      "react-native/no-single-element-style-arrays":2,
+      "filenames/match-exported":2,
+      "no-use-before-define": "off",
+      "@typescript-eslint/no-use-before-define": ["off"],
+      "react/function-component-definition": [
+        2,
+        {
+          "namedComponents": "arrow-function",
+          "unnamedComponents": "arrow-function"
+        }
+      ],
+      "no-unsafe-optional-chaining": 0
+    }
+  }
+  
