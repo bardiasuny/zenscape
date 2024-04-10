@@ -7,6 +7,7 @@ export const TEXT_COLOR_60 = 'rgba(255, 255, 255, .6)';
 export const TEXT_COLOR_40 = 'rgba(255, 255, 255, .4)';
 
 export const SURFACE_COLOR = '#2C3556';
+export const GRAY_LIGHT = '#515151';
 
 export default {
     PRIMARY_COLOR,
@@ -16,5 +17,6 @@ export default {
     TEXT_COLOR_80,
     TEXT_COLOR_60,
     TEXT_COLOR_40,
-    SURFACE_COLOR
+    SURFACE_COLOR,
+    GRAY_LIGHT
 };

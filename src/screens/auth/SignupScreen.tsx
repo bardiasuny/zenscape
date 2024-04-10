@@ -22,7 +22,7 @@ const SignupScreen = ({ navigation }: SignupScreenProps) => {
         password: '',
     });
 
-    const { register } = useAuthentication();
+    const { register, loading } = useAuthentication();
 
     return (
         <BackgroundScreenWrapper image={backgroundImage}>
@@ -56,6 +56,7 @@ const SignupScreen = ({ navigation }: SignupScreenProps) => {
                                 onPress={() => {
                                     register(credentials.email, credentials.password);
                                 }}
+                                loading={loading}
                             >
                                 Signup
                             </ZenButton>

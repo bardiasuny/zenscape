@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-native/no-inline-styles */
 import * as React from 'react';
 import {
-    Text, View, StyleSheet, TouchableOpacity, StyleProp
+    Text, View, StyleSheet, TouchableOpacity, StyleProp,
+    ActivityIndicator
 } from 'react-native';
 import COLORS from '../utils/COLORS';
 import { SCREEN_WIDTH } from '../utils/CONST_LAYOUTS';
@@ -10,10 +13,12 @@ interface ZenButtonProps {
     secondary?: boolean
     style?: StyleProp<any>
     onPress: () => void
+    loading?: boolean
+    disabled?: boolean
 }
 
 const ZenButton = ({
-    children, secondary, style, onPress
+    children, secondary, style, onPress, loading, disabled
 }: ZenButtonProps) => {
     let backgroundColor = COLORS.PRIMARY_COLOR;
     if (secondary) backgroundColor = COLORS.SECONDARY_COLOR;
@@ -21,6 +26,7 @@ const ZenButton = ({
         <TouchableOpacity
             activeOpacity={0.8}
             onPress={onPress}
+            disabled={disabled || loading}
             style={{
                 backgroundColor,
                 borderRadius: 10,
@@ -29,18 +35,23 @@ const ZenButton = ({
                 width: SCREEN_WIDTH * 0.85,
                 justifyContent: 'center',
                 alignItems: 'center',
+                opacity: disabled ? 0.5 : 1,
                 ...style
             }}
         >
-            <Text
-                style={{
-                    color: COLORS.TEXT_COLOR,
-                    fontSize: 15,
-                    fontWeight: '600',
-                }}
-            >
-                {children}
-            </Text>
+            {loading
+                ? <ActivityIndicator />
+                : (
+                    <Text
+                        style={{
+                            color: COLORS.TEXT_COLOR,
+                            fontSize: 15,
+                            fontWeight: '600',
+                        }}
+                    >
+                        {children}
+                    </Text>
+                )}
         </TouchableOpacity>
     );
 };

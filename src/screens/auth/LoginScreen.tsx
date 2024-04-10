@@ -23,7 +23,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
 
     });
 
-    const { login } = useAuthentication();
+    const { login, loading } = useAuthentication();
 
     return (
         <BackgroundScreenWrapper image={backgroundImage}>
@@ -54,6 +54,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
                         <View style={{ marginTop: 15 }}>
                             <ZenButton
                                 onPress={() => login(credentials.email, credentials.password)}
+                                loading={loading}
                             >
                                 Login
                             </ZenButton>
