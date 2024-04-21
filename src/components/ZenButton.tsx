@@ -6,20 +6,22 @@ import COLORS from '../utils/COLORS';
 import { SCREEN_WIDTH } from '../utils/CONST_LAYOUTS';
 
 interface ZenButtonProps {
-    children: React.ReactNode
+    children: React.ReactNode | string
     secondary?: boolean
     style?: StyleProp<any>
     onPress: () => void
+    disabled?: boolean
 }
 
 const ZenButton = ({
-    children, secondary, style, onPress
+    children, secondary, style, onPress, disabled
 }: ZenButtonProps) => {
     let backgroundColor = COLORS.PRIMARY_COLOR;
     if (secondary) backgroundColor = COLORS.SECONDARY_COLOR;
     return (
         <TouchableOpacity
             activeOpacity={0.8}
+            disabled={disabled}
             onPress={onPress}
             style={{
                 backgroundColor,
@@ -29,6 +31,7 @@ const ZenButton = ({
                 width: SCREEN_WIDTH * 0.85,
                 justifyContent: 'center',
                 alignItems: 'center',
+                opacity: disabled ? 0.5 : 1,
                 ...style
             }}
         >
@@ -39,7 +42,7 @@ const ZenButton = ({
                     fontWeight: '600',
                 }}
             >
-                {children}
+                {children.toUpperCase()}
             </Text>
         </TouchableOpacity>
     );

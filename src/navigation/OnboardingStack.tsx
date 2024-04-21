@@ -1,21 +1,19 @@
 import * as React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
-import SignupScreen from '../screens/auth/SignupScreen';
-import LoginScreen from '../screens/auth/LoginScreen';
 import { STANDARD_NAVIGATION_OPTIONS } from '../utils/NavigationOptions';
+import OnboardingQuestionsScreen from '../screens/onborading/OnboardingQuestionsScreen';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
-const AuthStack = () => (
+const OnboardingStack = () => (
     <>
         {/* eslint-disable-next-line react/style-prop-object */}
         <StatusBar style="light" />
         <Navigator>
-            <Screen options={STANDARD_NAVIGATION_OPTIONS} name="Signup" component={SignupScreen} />
-            <Screen options={STANDARD_NAVIGATION_OPTIONS} name="Login" component={LoginScreen} />
+            <Screen options={STANDARD_NAVIGATION_OPTIONS} name="OnboardingQuestions" component={OnboardingQuestionsScreen} />
         </Navigator>
     </>
 );
 
-export default AuthStack;
+export default OnboardingStack;
