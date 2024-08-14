@@ -11,18 +11,23 @@ import ZenButton from '../../components/ZenButton';
 import ONBOARDING_QUESTIONS from '../../utils/data/ONBOARDING_QUESTIONS';
 import QuestionCarousel from '../../components/QuestionCarousel';
 import ProgressSteps from '../../components/ProgressSteps';
+import { useProfile } from '../../context/ProfileProvider';
 
 const OnboardingQuestionsScreen = () => {
     const [answers, setAnswers] = useState({});
     const [carouselIndex, setCarouselIndex] = useState(0);
 
+    const { updateProfile } = useProfile();
+
     const carouselRef = useRef(null);
 
     const isLast = carouselIndex === ONBOARDING_QUESTIONS.length - 1;
 
-    const onNext = () => {
+    const onNext = async () => {
         if (!isLast) {
             carouselRef?.current?.scrollToIndex({ index: carouselIndex + 1 });
+        } else {
+            await updateProfile({ hasOnboarding: true, ...answers });
         }
     };
 

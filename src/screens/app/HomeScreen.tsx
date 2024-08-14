@@ -4,11 +4,14 @@ import {
 } from 'react-native';
 import useAuthentication from '../../hooks/useAuthentication';
 import ZenButton from '../../components/ZenButton';
+import { useProfile } from '../../context/ProfileProvider';
 
 interface HomeScreenProps {}
 
 const HomeScreen = (props: HomeScreenProps) => {
     const { logout } = useAuthentication();
+    const { profile } = useProfile();
+
     return (
         <View style={styles.container}>
             <Text>HomeScreen</Text>

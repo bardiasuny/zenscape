@@ -9,151 +9,253 @@ export default [
     {
         id: '2',
         question: 'What is your age?',
-        placeholder: 'Enter your age',
         key: 'age',
+        placeholder: 'Enter your age',
         type: 'number',
     },
     {
         id: '3',
-        question: 'What brings you to mindfulness practice?',
-        key: 'reason',
+        question: 'What is your gender?',
+        key: 'gender',
+        placeholder: 'Select your gender',
         type: 'multi',
         options: [
             {
-                value: 'To manage stress and anxiety',
-                key: 'manageStress'
+                value: 'Male',
+                key: 'male'
             },
             {
-                value: 'To improve focus and concentration',
-                key: 'improveFocus'
+                value: 'Female',
+                key: 'female'
             },
             {
-                value: 'Seeking a deeper connection with myself and others',
-                key: 'deeperConnection'
+                value: 'Other',
+                key: 'other'
             },
             {
-                value: 'To improve sleep and relaxation',
-                key: 'improveSleepAndRelaxation'
+                value: 'Prefer not to say',
+                key: 'prefer_not_to_say'
             }
         ]
     },
     {
         id: '4',
-        question: 'How familiar are you with meditation?',
-        key: 'experience',
+        question: 'How many days per week do you want to train?',
+        key: 'trainingDays',
+        placeholder: 'Select number of days',
         type: 'multi',
         options: [
             {
-                value: "I've never tried it before",
-                key: 'never'
+                value: '1',
+                key: '1_day'
             },
             {
-                value: "I've meditated a few times",
-                key: 'few'
+                value: '2',
+                key: '2_days'
             },
             {
-                value: "I meditate regularly, but I'm not consistent",
-                key: 'regularly'
+                value: '3',
+                key: '3_days'
             },
             {
-                value: 'Meditation is a staple in my daily routine',
-                key: 'always'
+                value: '4',
+                key: '4_days'
+            },
+            {
+                value: '5',
+                key: '5_days'
+            },
+            {
+                value: '6',
+                key: '6_days'
+            },
+            {
+                value: '7',
+                key: '7_days'
             }
         ]
     },
     {
         id: '5',
-        question: 'What time of day do you prefer to meditate?',
-        key: 'timeOfDay',
+        question: 'What is your primary fitness goal?',
+        key: 'goal',
+        placeholder: 'Select your goal',
         type: 'multi',
         options: [
             {
-                value: 'First thing in the morning to start my day right',
-                key: 'morning'
+                value: 'Bulk (Gain Muscle)',
+                key: 'bulk'
             },
             {
-                value: 'During lunch breaks to reset my mind',
-                key: 'noon'
+                value: 'Cut (Lose Fat)',
+                key: 'cut'
             },
             {
-                value: 'In the evening to unwind after a long day',
-                key: 'evening'
+                value: 'Maintain',
+                key: 'maintain'
             },
             {
-                value: 'Right before bed to help me sleep',
-                key: 'night'
+                value: 'Improve Overall Fitness',
+                key: 'overall_fitness'
             }
         ]
     },
     {
         id: '6',
-        question: 'What’s your preferred duration for a meditation session?',
-        key: 'sessionDuration',
+        question: 'What is your current fitness level?',
+        key: 'fitnessLevel',
+        placeholder: 'Select your fitness level',
         type: 'multi',
         options: [
             {
-                value: 'Quick and refreshing — under 5 minutes',
-                key: 'short'
+                value: 'Beginner',
+                key: 'beginner'
             },
             {
-                value: 'A short pause — 5 to 15 minutes',
-                key: 'medium'
+                value: 'Intermediate',
+                key: 'intermediate'
             },
             {
-                value: 'Deep dive — 15 to 30 minutes',
-                key: 'long'
-            },
-            {
-                value: 'Immersive experience — more than 30 minutes',
-                key: 'extraLong'
+                value: 'Advanced',
+                key: 'advanced'
             }
         ]
     },
     {
         id: '7',
-        question: 'What type of guided meditations are you interested in?',
-        key: 'meditationType',
+        question: 'Do you have any injuries or physical limitations?',
+        key: 'injuries',
+        placeholder: 'Describe any injuries or limitations',
+        type: 'text',
+    },
+    {
+        id: '8',
+        question: 'What is your current body weight (in kg)?',
+        key: 'weight',
+        placeholder: 'Enter your weight',
+        type: 'number',
+    },
+    {
+        id: '9',
+        question: 'What is your current height (in cm)?',
+        key: 'height',
+        placeholder: 'Enter your height',
+        type: 'number',
+    },
+    {
+        id: '10',
+        question: 'What type of training do you prefer?',
+        key: 'trainingType',
+        placeholder: 'Select your preferred training type',
         type: 'multi',
         options: [
             {
-                value: 'Breathing exercises for relaxation',
-                key: 'breathing'
+                value: 'Strength Training',
+                key: 'strength_training'
             },
             {
-                value: 'Visualization for manifesting goals',
-                key: 'visualization'
+                value: 'Cardio',
+                key: 'cardio'
             },
             {
-                value: 'Body scans for physical awareness',
-                key: 'bodyScan'
+                value: 'High-Intensity Interval Training (HIIT)',
+                key: 'hiit'
             },
             {
-                value: 'Mindful walking for active meditation',
-                key: 'walking'
+                value: 'Mixed',
+                key: 'mixed'
+            },
+            {
+                value: 'Other',
+                key: 'other'
             }
         ]
     },
     {
-        id: '8',
-        question: 'How would you describe your current stress level?',
-        key: 'stressLevel',
+        id: '11',
+        question: 'Do you have access to a gym or home equipment?',
+        key: 'equipment',
+        placeholder: 'Select your equipment availability',
         type: 'multi',
         options: [
             {
-                value: 'Quite low, I’m generally relaxed',
-                key: 'low'
+                value: 'Gym Access',
+                key: 'gym_access'
             },
             {
-                value: 'It comes and goes, depending on the day',
-                key: 'moderate'
+                value: 'Home Equipment',
+                key: 'home_equipment'
             },
             {
-                value: 'Pretty high, I’m often feeling overwhelmed',
-                key: 'high'
+                value: 'Bodyweight Only',
+                key: 'bodyweight_only'
+            }
+        ]
+    },
+    {
+        id: '12',
+        question: 'How would you rate your current diet?',
+        key: 'diet',
+        placeholder: 'Select your diet quality',
+        type: 'multi',
+        options: [
+            {
+                value: 'Very Poor',
+                key: 'very_poor'
             },
             {
-                value: 'Extremely high, I need ways to cope urgently',
-                key: 'veryHigh'
+                value: 'Poor',
+                key: 'poor'
+            },
+            {
+                value: 'Average',
+                key: 'average'
+            },
+            {
+                value: 'Good',
+                key: 'good'
+            },
+            {
+                value: 'Very Good',
+                key: 'very_good'
+            }
+        ]
+    },
+    {
+        id: '13',
+        question: 'Do you have any dietary restrictions or preferences?',
+        key: 'dietaryRestrictions',
+        placeholder: 'Enter any dietary restrictions or preferences',
+        type: 'text',
+    },
+    {
+        id: '14',
+        question: 'What motivates you to stay active?',
+        key: 'motivation',
+        placeholder: 'Enter your source of motivation',
+        type: 'text',
+    },
+    {
+        id: '15',
+        question: 'How much sleep do you get per night on average?',
+        key: 'sleep',
+        placeholder: 'Enter your average hours of sleep',
+        type: 'number',
+    },
+    {
+        id: '16',
+        question: 'Are you currently following any specific fitness program?',
+        key: 'currentProgram',
+        placeholder: 'Select your current program status',
+        type: 'multi',
+        options: [
+            {
+                value: 'Yes',
+                key: 'yes'
+            },
+            {
+                value: 'No',
+                key: 'no'
             }
         ]
     }
