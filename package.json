@@ -11,6 +11,7 @@
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.23.1",
     "@react-native-firebase/auth": "^19.1.0",
+    "@react-navigation/bottom-tabs": "^6.6.1",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
     "@types/react": "~18.2.45",
