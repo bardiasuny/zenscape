@@ -26,6 +26,10 @@ const AppTabs = () => (
             screenOptions={{
                 tabBarStyle: styles.tabBarStyle,
                 tabBarShowLabel: false,
+                headerShown: false,
+            }}
+            sceneContainerStyle={{
+                backgroundColor: COLORS.BACKGROUND_COLOR
             }}
         >
             <Screen

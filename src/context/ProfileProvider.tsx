@@ -25,6 +25,8 @@ const ProfileProvider = ({ children }) => {
                 onSnapshot(profileRef, (document) => {
                     if (document.exists()) {
                         setProfile(document.data());
+                    } else {
+                        setProfile(null);
                     }
                 });
             } else {
