@@ -12,7 +12,7 @@ const OnboardingStack = () => (
         {/* eslint-disable-next-line react/style-prop-object */}
         <StatusBar style="light" />
         <Navigator>
-            <Screen options={STANDARD_NAVIGATION_OPTIONS} name="OnboardingStack" component={OnboardingQuestionsScreen} />
+            <Screen options={STANDARD_NAVIGATION_OPTIONS} name="OnboardingScreen" component={OnboardingQuestionsScreen} />
         </Navigator>
     </>
 );
