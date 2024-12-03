@@ -5,7 +5,6 @@ import {
     ActivityIndicator,
     Animated, Image, PanResponder, TouchableOpacity, View
 } from 'react-native';
-import { NavigationProp, ParamListBase, RouteProp } from '@react-navigation/native';
 import { Audio, InterruptionModeAndroid, InterruptionModeIOS } from 'expo-av';
 import { Sound } from 'expo-av/build/Audio';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
@@ -14,18 +13,21 @@ import Feather from '@expo/vector-icons/Feather';
 import HeaderImage from '../../components/HeaderImage';
 import playerImage from '../../../assets/images/player_Headerimage.png';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../utils/CONST_LAYOUTS';
-import MusicProgressBar from '../../components/MusicProgressBar';
-import MEDITATION_MEDIA from '../../utils/data/MEDITATION_MEDIA';
 import ZenText from '../../components/ZenText';
 import COLORS from '../../utils/COLORS';
 import { usePlayerState } from '../../context/PlayerProvider';
 import playerEmpty from '../../../assets/images/player_empty.png';
 import playerFull from '../../../assets/images/player_full.png';
 
+const progressWidth = SCREEN_WIDTH * 0.9;
 const PlayerScreen = () => {
     const { playerState, updatePlayerState, resetPlyerState } = usePlayerState();
-    const [isPlaying, setIsPlaying] = useState<boolean>(false);
+
     const [sound, setSound] = useState<Sound | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [duration, setDuration] = useState<number>(0);
+    const [isLooping, setIsLooping] = useState<boolean>(false);
+    const scrubbingStarted = useRef<boolean>(false);
 
     const progress = useRef(new Animated.Value(0));
 
@@ -58,23 +60,7 @@ const PlayerScreen = () => {
                 isPlaying: true,
             });
         }
-        // Set and play the sound
-
-        // After the sound has finished, update the state so that the icon changes
     };
-
-    const onScrub = async (time: number) => {
-        await sound?.setPositionAsync(time);
-        updatePlayerState({
-            isPlaying: true,
-        });
-    };
-
-    const [loading, setLoading] = useState<boolean>(true);
-
-    const [duration, setDuration] = useState<number>(0);
-
-    const scrubbingStarted = useRef<boolean>(false);
 
     const settingUpSound = async () => {
         const { sound: newSound } = await Audio.Sound.createAsync({ uri: playerState?.audioUrl });
@@ -93,8 +79,6 @@ const PlayerScreen = () => {
             }
         });
     };
-
-    const [isLooping, setIsLooping] = useState<boolean>(false);
 
     const toggleRepeat = async () => {
         console.log('repeating');
@@ -126,7 +110,6 @@ const PlayerScreen = () => {
         outputRange: ['0%', '100%'],
     });
 
-    const progressWidth = SCREEN_WIDTH * 0.9;
     // PanResponder to handle scrubbing gestures
     const panResponder = useMemo(
         () => {
@@ -168,7 +151,7 @@ const PlayerScreen = () => {
                 width: '100%',
                 overflow: 'hidden',
                 position: 'absolute',
-                backgroundColor: COLORS.BACKGROUND_COLOR,
+                backgroundColor: COLORS.SURFACE_COLOR,
             }}
             >
                 <View
@@ -247,12 +230,13 @@ const PlayerScreen = () => {
     }
 
     return (
-        <View style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-        }}
+        <View
+            style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+            }}
         >
 
             <View style={{
@@ -260,18 +244,26 @@ const PlayerScreen = () => {
                 minHeight: SCREEN_HEIGHT,
                 justifyContent: 'center',
                 alignItems: 'center',
+
             }}
             >
-                <HeaderImage
-                    image={playerImage}
-                    height={SCREEN_WIDTH + 80}
-                />
+                <View
+                    style={{
+                        flex: 6
+                    }}
+                >
+                    <HeaderImage
+                        image={playerImage}
+                        height="100%"
+                    />
+                </View>
 
                 <View style={{
                     marginTop: 20,
                     width: SCREEN_WIDTH,
                     alignItems: 'center',
                     justifyContent: 'center',
+                    flex: 1,
                 }}
                 >
                     <ZenText subtitle center>
@@ -305,11 +297,17 @@ const PlayerScreen = () => {
 
                     {loading
                         ? (
-                            <ActivityIndicator
-                                size="large"
-                                color={COLORS.PRIMARY_COLOR}
-                                style={{ marginTop: 10 }}
-                            />
+                            <View
+                                style={{
+                                    height: 138
+                                }}
+                            >
+                                <ActivityIndicator
+                                    size="large"
+                                    color={COLORS.PRIMARY_COLOR}
+                                    style={{ marginTop: 10 }}
+                                />
+                            </View>
                         ) : (
                             <View style={{
                                 flexDirection: 'row',
@@ -352,12 +350,16 @@ const PlayerScreen = () => {
                 style={{
                     position: 'absolute',
                     top: 40,
-                    right: 10,
+                    left: 0,
                     padding: 20,
                     flexDirection: 'row',
                     justifyContent: 'space-between',
+                    width: '100%',
                 }}
             >
+                <TouchableOpacity onPress={resetPlyerState}>
+                    <Feather name="power" size={24} color={COLORS.TEXT_COLOR} />
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => updatePlayerState({
                     fullScreen: false,
                 })}
