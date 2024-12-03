@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import {
-    Text, View, StyleSheet, Button,
+    View, StyleSheet,
     ScrollView,
     FlatList
 } from 'react-native';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import useAuthentication from '../../hooks/useAuthentication';
 import ZenButton from '../../components/ZenButton';
 import { useProfile } from '../../context/ProfileProvider';
@@ -14,17 +15,25 @@ import ZenTextInput from '../../components/ZenTextInput';
 import SearchIcon from '../../../assets/icons/SearchIcon';
 import MEDITATION_MEDIA from '../../utils/data/MEDITATION_MEDIA';
 import ZenMediaCards from '../../components/ZenMediaCards';
+import { usePlayerState } from '../../context/PlayerProvider';
 
-interface HomeScreenProps {}
+interface HomeScreenProps {
+    navigation: NavigationProp<ParamListBase>;
+}
 
-const HomeScreen = (props: HomeScreenProps) => {
+const HomeScreen = ({ navigation }: HomeScreenProps) => {
     const { logout } = useAuthentication();
     const { profile } = useProfile();
 
     const [searchText, setSearchText] = useState('');
 
+    const { playerState, updatePlayerState, resetPlyerState } = usePlayerState();
+
     return (
-        <ScrollView contentContainerStyle={styles.container}>
+        <ScrollView
+            contentContainerStyle={styles.container}
+
+        >
             <HeaderImage
                 image={headerImage}
             />
@@ -69,7 +78,7 @@ const HomeScreen = (props: HomeScreenProps) => {
                     horizontal
                     data={MEDITATION_MEDIA}
                     contentContainerStyle={{ paddingHorizontal: 20, marginTop: 20 }}
-                    keyExtractor={(item) => item.title}
+                    keyExtractor={(item) => item.id}
                     snapToInterval={150}
                     decelerationRate="fast"
                     disableIntervalMomentum
@@ -78,15 +87,24 @@ const HomeScreen = (props: HomeScreenProps) => {
                     renderItem={({ item }) => (
                         <View>
                             <ZenMediaCards
+                                id={item.id}
                                 title={item.title}
                                 image={item.image}
                                 duration={item.duration}
                                 type={item.type}
+                                audioUrl={item.audioUrl}
+                                updatePlayerState={updatePlayerState}
+                                resetPlyerState={resetPlyerState}
                             />
                         </View>
                     )}
                 />
             </View>
+            <View
+                style={!playerState.fullScreen && playerState.audioUrl && {
+                    height: 80,
+                }}
+            />
         </ScrollView>
     );
 };
@@ -94,9 +112,7 @@ const HomeScreen = (props: HomeScreenProps) => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
+
     searchWrapper: {
         marginTop: 15,
         display: 'flex',

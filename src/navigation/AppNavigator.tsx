@@ -10,6 +10,7 @@ import visbyRegular from '../../assets/fonts/VisbyCF-Medium.ttf';
 import visbyMedium from '../../assets/fonts/VisbyCF-DemiBold.ttf';
 import visbyBold from '../../assets/fonts/VisbyCF-Bold.ttf';
 import visbyExtraBold from '../../assets/fonts/VisbyCF-ExtraBold.ttf';
+import PlayerProvider from '../context/PlayerProvider';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -27,20 +28,22 @@ const AppNavigator = () => {
     if (!loaded || error) return null;
 
     return (
-        <Navigator
-            screenOptions={{
-                headerShown: false
-            }}
-        >
-            {!isLoggedIn && (
-                <Screen
-                    name="AuthStack"
-                    component={AuthStack}
-                />
-            )}
-            {isLoggedIn && !hasOnboarding && <Screen name="OnboardingStack" component={OnboardingStack} />}
-            {isLoggedIn && hasOnboarding && <Screen name="AppStack" component={AppStack} />}
-        </Navigator>
+        <PlayerProvider>
+            <Navigator
+                screenOptions={{
+                    headerShown: false
+                }}
+            >
+                {!isLoggedIn && (
+                    <Screen
+                        name="AuthStack"
+                        component={AuthStack}
+                    />
+                )}
+                {isLoggedIn && !hasOnboarding && <Screen name="OnboardingStack" component={OnboardingStack} />}
+                {isLoggedIn && hasOnboarding && <Screen name="AppStack" component={AppStack} />}
+            </Navigator>
+        </PlayerProvider>
     );
 };
 

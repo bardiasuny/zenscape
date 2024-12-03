@@ -1,22 +1,45 @@
 import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import {
+    Image, StyleSheet, TouchableOpacity, View
+} from 'react-native';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import ZenText from './ZenText';
 import convertSecondToMinute from '../utils/helper/convertSecondToMinute';
+import { PlayerStateType } from '../context/PlayerProvider';
 
 interface ZenMediaCardsProps {
     title: string,
     image: string,
     duration: number,
     type: string
+    id: string,
+    audioUrl: string,
+    updatePlayerState: (state : Partial<PlayerStateType>) => void
+    resetPlyerState: () => void
 }
 
 const ZenMediaCards = ({
+    id,
     title,
     image,
     duration,
     type,
+    audioUrl,
+    updatePlayerState,
+    resetPlyerState
 }: ZenMediaCardsProps) => (
-    <View style={styles.cardContainer}>
+    <TouchableOpacity
+        style={styles.cardContainer}
+        onPress={() => {
+            resetPlyerState();
+            updatePlayerState({
+                audioUrl,
+                image,
+                fullScreen: true,
+                title
+            });
+        }}
+    >
         <Image
             source={{ uri: image }}
             style={styles.image}
@@ -38,7 +61,7 @@ const ZenMediaCards = ({
             -
             {convertSecondToMinute(duration)}
         </ZenText>
-    </View>
+    </TouchableOpacity>
 );
 
 export default ZenMediaCards;

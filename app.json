@@ -15,13 +15,21 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "buildNumber": "1",
+    "infoPlist": {
+      "UIBackgroundModes": ["audio"]
+    },
+    "bundleIdentifier": "com.zenscape.app"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "versionCode": 1,
+      "package": "com.zenscape.app",
+      "permissions": ["WAKE_LOCK"]
     },
     "web": {
       "favicon": "./assets/favicon.png"
